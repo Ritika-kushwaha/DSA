@@ -7,9 +7,11 @@ class Solution {
             sum=sum+arr[i];
             
         }
-
         avg=sum/k;
-        if(avg>=threshold) count++;
+
+        if(sum/k>=threshold) count++;
+
+
         for(int i=k;i<arr.length;i++){
             avg=avg-(arr[i-k]/k)+(arr[i]/k);
             if(avg>=threshold) count++;
