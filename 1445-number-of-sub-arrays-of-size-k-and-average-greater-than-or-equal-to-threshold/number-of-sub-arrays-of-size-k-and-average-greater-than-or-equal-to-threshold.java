@@ -4,17 +4,18 @@ class Solution {
         int sum=0;
         int count=0;
         for(int i=0;i<k;i++){
-            sum=sum+arr[i];
-            
+            sum+=arr[i];
         }
         avg=sum/k;
-
-        if(sum/k>=threshold) count++;
-
-
-        for(int i=k;i<arr.length;i++){
-            avg=avg-(arr[i-k]/k)+(arr[i]/k);
-            if(avg>=threshold) count++;
+        if(avg>=threshold){
+            count++;
+        }
+        for(int i=0;i<arr.length-k;i++){
+            sum=sum-arr[i]+arr[k+i];
+            avg=sum/k;
+            if(avg>=threshold){
+                count++;
+            }
         }
         return count;
     }
