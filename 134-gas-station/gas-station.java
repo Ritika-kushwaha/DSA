@@ -1,29 +1,23 @@
 class Solution {
     public int canCompleteCircuit(int[] gas, int[] cost) {
-        int totalGas = 0;
-        int totalCost = 0;
-        int currentTank = 0;
-        int startStation = 0;
-        
-        for (int i = 0; i < gas.length; i++) {
-            totalGas += gas[i];
-            totalCost += cost[i];
-            currentTank += gas[i] - cost[i];
-            
-            // If the car runs out of gas at the current station
-            if (currentTank < 0) {
-                // Pick the next station as the new starting point candidate
-                startStation = i + 1;
-                // Reset the running tank for the new journey
-                currentTank = 0;
-            }
+        int tgas=0;
+        int tcos=0;
+        for(int i=0;i<gas.length;i++){
+            tgas+=gas[i];
+            tcos+=cost[i];
         }
-        
-        // If total gas is less than total cost, a full circuit is impossible
-        if (totalGas < totalCost) {
+        if(tgas<tcos){
             return -1;
         }
-        
-        return startStation;
+        int sum=0;
+        int pos=0;
+        for(int i=0;i<gas.length;i++){
+            sum+=gas[i]-cost[i];
+            if(sum<0){
+                sum=0;
+                pos=i+1;
+            }
+        }
+        return pos;
     }
 }
