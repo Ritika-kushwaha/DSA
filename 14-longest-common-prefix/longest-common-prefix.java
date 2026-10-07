@@ -6,11 +6,11 @@ class Solution {
         String prefix=strs[0];
         for(int i=1;i<strs.length;i++){
             int j=0;
-            while(j<prefix.length() && j<strs[i].length() && prefix.charAt(j)==strs[i].charAt(j)){
+            while(j<strs[i].length() && j<prefix.length() && prefix.charAt(j)==strs[i].charAt(j)){
                 j++;
             }
-            prefix = prefix.substring(0, j);
-            if (prefix.isEmpty()) {
+            prefix=prefix.substring(0,j);
+            if(prefix==""){
                 return "";
             }
         }
