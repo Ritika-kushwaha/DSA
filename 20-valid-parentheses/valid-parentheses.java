@@ -1,30 +1,22 @@
-import java.util.Stack;
-
 class Solution {
     public boolean isValid(String s) {
-
-        Stack<Character> st = new Stack<>();
-
-        for (char ch : s.toCharArray()) {
-
-            if (ch == '(' || ch == '{' || ch == '[') {
-                st.push(ch);
-            } else {
-
-                if (st.isEmpty()) {
-                    return false;
-                }
-
-                char top = st.pop();
-
-                if ((ch == ')' && top != '(') ||
-                    (ch == '}' && top != '{') ||
-                    (ch == ']' && top != '[')) {
+        if(s.length()%2!=0){
+            return false;
+        }
+        Deque<Character> stack = new ArrayDeque<>();
+        for(char c:s.toCharArray()){
+            if(c=='('){
+                stack.push(')');
+            }else if(c=='{'){
+                stack.push('}');
+            }else if( c=='['){
+                stack.push(']');
+            }else{
+                if (stack.isEmpty() || stack.pop() != c) {
                     return false;
                 }
             }
         }
-
-        return st.isEmpty();
+        return stack.isEmpty();
     }
 }
